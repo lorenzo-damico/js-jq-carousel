@@ -78,4 +78,66 @@ $(document).ready(function() {
     }
   );
 
+  // 7. Aggiungo la possibilità di scatenare le 2 funzioni al premere dei tasti freccia destra e sinistra.
+  $(document).keydown(
+    function () {
+      if (event.which == 39) {
+        // 2. Per prima cosa definisco l'immagine che possiede la classe active attualmente.
+        var imgActive = $("img.active");
+        var pallinoActive = $(".nav i.active")
+
+        // 3. Rimuovo la classe dall'immagine affinchè scompaia.
+        imgActive.removeClass("active");
+        pallinoActive.removeClass("active");
+
+        // 4. Definisco l'immagine successiva.
+        //    Se è l'ultima immagine, ovvero ha classe last, reimposto la prima immagine.
+        //    Altrimenti imposto tramite la funzione next().
+        if (imgActive.hasClass("last") == true) {
+          var nextImg = $("img.first");
+        } else {
+          var nextImg = imgActive.next();
+        }
+
+        if (pallinoActive.hasClass("last") == true) {
+          var nextPallino = $(".nav i.first");
+        } else {
+          var nextPallino = pallinoActive.next();
+        }
+
+        // 5. Aggiungo la classe active all'immagine successiva.
+        nextImg.addClass("active");
+        nextPallino.addClass("active");
+
+      } else if (event.which == 37) {
+        // 2. Per prima cosa definisco l'immagine che possiede la classe active attualmente.
+        var imgActive = $("img.active");
+        var pallinoActive = $(".nav i.active");
+
+        // 3. Rimuovo la classe dall'immagine affinchè scompaia.
+        imgActive.removeClass("active");
+        pallinoActive.removeClass("active");
+
+        // 4. Definisco l'immagine pecedente.
+        //    Se è la prima immagine, ovvero ha classe first, reimposto l'ultima immagine.
+        //    Altrimenti imposto tramite la funzione prev().
+        if (imgActive.hasClass("first") == true) {
+          var nextImg = $("img.last");
+        } else {
+          var nextImg = imgActive.prev();
+        }
+
+        if (pallinoActive.hasClass("first") == true) {
+          var nextPallino = $(".nav i.last");
+        } else {
+          var nextPallino = pallinoActive.prev();
+        }
+
+        // 5. Aggiungo la classe active all'immagine precedente.
+        nextImg.addClass("active");
+        nextPallino.addClass("active");
+      }
+    }
+  );
+
 });
