@@ -84,7 +84,7 @@ $(document).ready(function() {
       if (event.which == 39) {
         // 2. Per prima cosa definisco l'immagine che possiede la classe active attualmente.
         var imgActive = $("img.active");
-        var pallinoActive = $(".nav i.active")
+        var pallinoActive = $(".nav i.active");
 
         // 3. Rimuovo la classe dall'immagine affinchè scompaia.
         imgActive.removeClass("active");
@@ -137,6 +137,27 @@ $(document).ready(function() {
         nextImg.addClass("active");
         nextPallino.addClass("active");
       }
+    }
+  );
+
+
+  // 8. Imposto la possibilità di scegliere un'immagine cliccando su un pallino.
+  $(".nav i").click(
+    function () {
+      var imgActive = $("img.active");
+      var pallinoActive = $(".nav i.active");
+
+      imgActive.removeClass("active");
+      pallinoActive.removeClass("active");
+
+      var index = $(this).index();
+      console.log(index);
+
+      var nextImg = $(".images img").eq(index);
+      var nextPallino = $(this);
+
+      nextImg.addClass("active");
+      nextPallino.addClass("active");
     }
   );
 
